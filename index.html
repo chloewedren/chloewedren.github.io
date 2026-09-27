@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chloe Wedren</title>
-<meta name="description" content="Chloe Wedren — Political Science at Tulane University, pre-law. Judicial intern, U.S. Bankruptcy Court, Eastern District of Louisiana.">
+<meta name="description" content="Chloe Wedren — Senior Political Science student at Tulane University, pre-law. Judicial intern, U.S. Bankruptcy Court, Eastern District of Louisiana.">
 <meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,12 +82,6 @@
     pointer-events: none;
   }
   .hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: center; }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 10px;
-    color: var(--baby); font-size: .78rem; font-weight: 600;
-    letter-spacing: .18em; text-transform: uppercase; margin: 0;
-  }
-  .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--baby); }
   .hero h1 {
     font-family: var(--serif); font-weight: 400;
     font-size: clamp(3rem, 8vw, 5.2rem);
@@ -95,8 +89,12 @@
     margin: 0;
   }
   .hero .lede {
-    color: rgba(255,255,255,.78);
-    font-size: 1.14rem; max-width: 31em; margin: 22px 0 0;
+    color: rgba(255,255,255,.9);
+    font-size: 1.2rem; font-weight: 500; max-width: 31em; margin: 22px 0 0;
+  }
+  .hero .lede-sub {
+    color: rgba(255,255,255,.66);
+    font-size: 1.02rem; max-width: 34em; margin: 6px 0 0;
   }
   .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
   .btn {
@@ -108,8 +106,6 @@
   .btn svg { width: 16px; height: 16px; fill: currentColor; }
   .btn-primary { background: var(--baby); color: var(--navy-deep); }
   .btn-primary:hover { background: var(--white); transform: translateY(-1px); }
-  .btn-ghost { border: 1px solid rgba(255,255,255,.3); color: var(--white); }
-  .btn-ghost:hover { border-color: var(--baby); color: var(--baby); transform: translateY(-1px); }
 
   .portrait { position: relative; width: 250px; height: 250px; }
   .portrait::before {
@@ -125,21 +121,6 @@
     border: 5px solid var(--baby);
     box-shadow: 0 24px 50px -20px rgba(0,0,0,.6);
   }
-
-  /* Stats */
-  .stats-wrap { margin-top: -74px; position: relative; z-index: 2; }
-  .stats {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    background: var(--white); border-radius: 18px;
-    box-shadow: 0 1px 2px rgba(14,38,70,.06), 0 24px 50px -24px rgba(14,38,70,.35);
-    border: 1px solid var(--rule);
-    overflow: hidden;
-  }
-  .stat { padding: 26px 30px; border-right: 1px solid var(--rule); }
-  .stat:last-child { border-right: 0; }
-  .stat .num { font-family: var(--serif); font-size: 2.2rem; line-height: 1.1; color: var(--navy); }
-  .stat .lbl { color: var(--muted); font-size: .9rem; margin-top: 4px; }
-  .stat .num em { font-style: normal; color: #5b9bd0; }
 
   /* Sections */
   section { padding: 84px 0 0; scroll-margin-top: 70px; }
@@ -174,11 +155,25 @@
   .role.current::before { background: var(--baby); }
   .role-card {
     background: var(--white); border: 1px solid var(--rule); border-radius: 14px;
-    padding: 18px 22px; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
   }
-  .role-card:hover { border-color: var(--baby); box-shadow: var(--shadow); transform: translateX(3px); }
+  .role-card:hover { border-color: var(--baby); box-shadow: var(--shadow); }
+  .role-card[open] { border-color: var(--baby); box-shadow: var(--shadow); }
+  .role-card summary {
+    list-style: none; cursor: pointer; display: block; padding: 18px 22px;
+  }
+  .role-card summary::-webkit-details-marker { display: none; }
+  .role-card summary:focus-visible { outline: 2px solid var(--baby); outline-offset: 2px; border-radius: 14px; }
   .role-top { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-  .role h3 { font-family: var(--serif); font-weight: 400; font-size: 1.32rem; color: var(--navy); margin: 0; }
+  .role-right { display: inline-flex; align-items: center; gap: 12px; }
+  .chev {
+    flex: none; width: 8px; height: 8px;
+    border-right: 2px solid var(--navy); border-bottom: 2px solid var(--navy);
+    transform: rotate(45deg) translateY(-3px); transition: transform .2s ease;
+  }
+  .role-card[open] .chev { transform: rotate(-135deg) translateY(-2px); }
+  .role h3 { font-family: var(--serif); font-weight: 400; font-size: 1.32rem; color: var(--navy); margin: 0; transition: color .18s ease; }
+  .role-card summary:hover h3 { color: #3f7fb8; }
   .when {
     font-size: .76rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
     color: var(--navy); background: var(--baby-soft); border: 1px solid var(--baby-mid);
@@ -187,6 +182,19 @@
   .role.current .when { background: var(--navy); color: var(--white); border-color: var(--navy); }
   .role .where { color: var(--muted); font-size: .95rem; font-weight: 500; margin: 2px 0 8px; }
   .role p.desc { font-size: .97rem; color: var(--text); margin: 0; }
+  .role-body { padding: 0 22px 20px; }
+  .role-body ul {
+    list-style: none; margin: 0; padding: 14px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+  .role-body li {
+    position: relative; padding-left: 20px; font-size: .95rem; color: var(--muted);
+  }
+  .role-body li + li { margin-top: 8px; }
+  .role-body li::before {
+    content: ""; position: absolute; left: 2px; top: .68em;
+    width: 7px; height: 7px; border-radius: 50%; background: var(--baby);
+  }
 
   /* AI band */
   .band {
@@ -251,11 +259,6 @@
     font-size: .72rem; font-weight: 600; letter-spacing: .06em; color: #5b9bd0; white-space: nowrap;
   }
   .courses details p { margin: 0; padding: 0 16px 14px; font-size: .93rem; color: var(--muted); }
-  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .pill {
-    font-size: .88rem; padding: 6px 14px; border-radius: 999px;
-    background: var(--baby-soft); border: 1px solid var(--baby-mid); color: var(--navy);
-  }
 
   /* Leadership */
   .lead-acc summary { padding: 14px 18px; }
@@ -264,15 +267,6 @@
   .lead-acc details { border-left: 4px solid var(--baby); }
   .lead-acc details[open] { border-left-color: var(--navy); }
   .lead-acc details p { padding: 0 18px 16px; }
-  .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .lead {
-    border: 1px solid var(--rule); border-radius: 14px; padding: 20px 22px;
-    border-top: 4px solid var(--baby);
-    transition: border-color .2s ease, box-shadow .2s ease;
-  }
-  .lead:hover { border-top-color: var(--navy); box-shadow: var(--shadow); }
-  .lead .t { font-weight: 600; color: var(--navy); font-size: 1rem; line-height: 1.4; }
-  .lead .o { color: var(--muted); font-size: .93rem; margin-top: 4px; }
 
   .outside p { font-size: 1.04rem; }
   .outside em { font-family: var(--serif); font-style: italic; font-size: 1.08em; color: var(--navy); }
@@ -296,19 +290,14 @@
     .hero { padding: 48px 0 64px; }
     .hero .container { grid-template-columns: 1fr; gap: 40px; }
     .portrait { width: 168px; height: 168px; order: -1; margin-left: 30px; margin-top: 18px; }
-    .stats { grid-template-columns: 1fr; }
-    .stat { border-right: 0; border-bottom: 1px solid var(--rule); padding: 18px 22px; display: flex; align-items: baseline; gap: 14px; }
-    .stat:last-child { border-bottom: 0; }
-    .stat .num { font-size: 1.7rem; min-width: 4.2em; }
-    .stat .lbl { margin: 0; }
-    .lead-grid { grid-template-columns: 1fr; }
     section { padding-top: 64px; }
     .band { margin-top: 64px; padding: 56px 0; }
   }
   @media (max-width: 480px) {
     .container { padding: 0 18px; }
     .role { padding-left: 32px; }
-    .role-card { padding: 16px 16px; }
+    .role-card summary { padding: 16px; }
+    .role-body { padding: 0 16px 16px; }
     .card { padding: 22px 20px; }
   }
 </style>
@@ -332,7 +321,8 @@
   <div class="container">
     <div>
       <h1>Chloe Wedren</h1>
-      <p class="lede">Political Science at Tulane University. Judicial intern at the U.S. Bankruptcy Court, Eastern District of Louisiana.</p>
+      <p class="lede">Senior Political Science Student at Tulane University.</p>
+      <p class="lede-sub">Judicial intern at the U.S. Bankruptcy Court, Eastern District of Louisiana.</p>
       <div class="btns">
         <a class="btn btn-primary" href="https://www.linkedin.com/in/chloe-wedren/">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21H9z"/></svg>
@@ -357,39 +347,87 @@
       <div class="label"><span class="kicker">02</span><h2>Experience</h2><div class="bar"></div></div>
       <div class="timeline">
         <div class="role current">
-          <div class="role-card">
-            <div class="role-top"><h3>Judicial Intern</h3><span class="when">Current</span></div>
-            <p class="where">U.S. Bankruptcy Court, E.D. La. · New Orleans</p>
-            <p class="desc">Legal research and court documents in Chapter 7, 11, and 13 proceedings.</p>
-          </div>
+          <details class="role-card">
+            <summary>
+              <div class="role-top"><h3>Judicial Intern</h3><span class="role-right"><span class="when">Current</span><span class="chev" aria-hidden="true"></span></span></div>
+              <p class="where">Chambers of the Hon. Meredith Grabill · U.S. Bankruptcy Court, E.D. La. · New Orleans</p>
+              <p class="desc">Legal research and court documents in Chapter 7, 11, and 13 proceedings.</p>
+            </summary>
+            <div class="role-body">
+              <ul>
+                <li>Prepare the docket for Chapter 7 and 13 hearings, reviewing 15 to 20 matters per shift, including motions for relief from stay.</li>
+                <li>Write clerk notes on each matter with a recommendation for the judge and law clerks.</li>
+                <li>Check figures, dates, and documents across motions and exhibits, and flag inconsistencies for further review.</li>
+              </ul>
+            </div>
+          </details>
         </div>
         <div class="role">
-          <div class="role-card">
-            <div class="role-top"><h3>Compliance Intern</h3><span class="when">Summer 2026</span></div>
-            <p class="where">GCM Grosvenor · Chicago</p>
-            <p class="desc">Brokerage-account compliance under FINRA and Advisers Act rules. Built AI tools to streamline the workflows and answer firm-wide policy questions.</p>
-          </div>
+          <details class="role-card">
+            <summary>
+              <div class="role-top"><h3>Compliance Intern</h3><span class="role-right"><span class="when">Summer 2026</span><span class="chev" aria-hidden="true"></span></span></div>
+              <p class="where">GCM Grosvenor · Chicago</p>
+              <p class="desc">Brokerage-account compliance under FINRA and Advisers Act rules. Built AI tools to streamline the workflows and answer firm-wide policy questions.</p>
+            </summary>
+            <div class="role-body">
+              <ul>
+                <li>Handled employee pre-clearance requests, account approvals, and 407/3210 letters with brokers in MyComplianceOffice and Workday.</li>
+                <li>Ran about ten one-on-one meetings with employees on personal trading and account disclosure policy violations.</li>
+                <li>Pitched and built a step-by-step guide with Claude that walks new compliance interns through account and trade approvals.</li>
+                <li>Built "Ask GCM," a Glean chatbot that answers employee policy questions and cites the source for each answer. It saves the compliance inbox at least 15 emails a day.</li>
+              </ul>
+            </div>
+          </details>
         </div>
         <div class="role">
-          <div class="role-card">
-            <div class="role-top"><h3>Legal Intern</h3><span class="when">Spring 2026</span></div>
-            <p class="where">Louisiana Center for Children's Rights · New Orleans</p>
-            <p class="desc">Research for defense strategy, social history chronologies, and court accompaniment for clients and families.</p>
-          </div>
+          <details class="role-card">
+            <summary>
+              <div class="role-top"><h3>Legal Intern</h3><span class="role-right"><span class="when">Spring 2026</span><span class="chev" aria-hidden="true"></span></span></div>
+              <p class="where">Louisiana Center for Children's Rights · New Orleans</p>
+              <p class="desc">Research for defense strategy, social history chronologies, and court accompaniment for clients and families.</p>
+            </summary>
+            <div class="role-body">
+              <ul>
+                <li>Built social history chronologies for juvenile defense cases from confidential family records.</li>
+                <li>Researched issues to support defense strategy.</li>
+                <li>Accompanied clients and their families to court.</li>
+                <li>Created a youth-accessible pamphlet explaining Louisiana's juvenile court process.</li>
+              </ul>
+            </div>
+          </details>
         </div>
         <div class="role">
-          <div class="role-card">
-            <div class="role-top"><h3>Securities Intern</h3><span class="when">Summer 2025</span></div>
-            <p class="where">Illinois Secretary of State · Chicago</p>
-            <p class="desc">Reviewed filings under state securities law and drafted memos on unlawful investment solicitations.</p>
-          </div>
+          <details class="role-card">
+            <summary>
+              <div class="role-top"><h3>Securities Intern</h3><span class="role-right"><span class="when">Summer 2025</span><span class="chev" aria-hidden="true"></span></span></div>
+              <p class="where">Illinois Secretary of State · Chicago</p>
+              <p class="desc">Reviewed filings under state securities law and drafted memos on unlawful investment solicitations.</p>
+            </summary>
+            <div class="role-body">
+              <ul>
+                <li>Reviewed filings for compliance with state securities laws and exemptions.</li>
+                <li>Drafted memos on entities and individuals soliciting investments in violation of Illinois securities law.</li>
+                <li>Built and presented a presentation to the IT and Securities team on identifying and shutting down fraudulent investment websites, using real cases and the NASAA protocol.</li>
+                <li>Attended internal strategy meetings and external trainings on enforcement trends and investor protection.</li>
+              </ul>
+            </div>
+          </details>
         </div>
         <div class="role">
-          <div class="role-card">
-            <div class="role-top"><h3>Legal Intern</h3><span class="when">Summer 2024</span></div>
-            <p class="where">Borkan &amp; Scahill, Ltd. · Chicago</p>
-            <p class="desc">Expert opposition research, Bates charts, and position statements; observed depositions and hearings.</p>
-          </div>
+          <details class="role-card">
+            <summary>
+              <div class="role-top"><h3>Legal Intern</h3><span class="role-right"><span class="when">Summer 2024</span><span class="chev" aria-hidden="true"></span></span></div>
+              <p class="where">Borkan &amp; Scahill, Ltd. · Chicago</p>
+              <p class="desc">Expert opposition research, Bates charts, and position statements; observed depositions and hearings.</p>
+            </summary>
+            <div class="role-body">
+              <ul>
+                <li>Conducted expert opposition research and built Bates charts for active litigation.</li>
+                <li>Drafted position statements aligned with case law and strategy.</li>
+                <li>Observed and assisted with depositions, federal and state court hearings, and trial preparation.</li>
+              </ul>
+            </div>
+          </details>
         </div>
       </div>
     </section>
